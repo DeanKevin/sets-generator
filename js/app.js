@@ -140,11 +140,9 @@ $(document).ready(function()
         // display matched
         $.each(sets, function(index, set) {
             
-            set.unique = 'false';
-            
             if(set.unique == 'false') {
 
-                var matched = '<div class="set-item">Set' + set.set + '<ul>';
+                var matched = '<div class="set-item"><p class="set-name">Set' + set.set + '</p><ul>';
 
                 $.each(set.values, function(index, value) {
                     matched = matched + '<li>' + value + '</li>';

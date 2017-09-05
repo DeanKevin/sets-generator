@@ -4,7 +4,7 @@
 }
 
 #AppForm {
-    margin: 100px 0 20%;
+    margin: 100px 0;
 }
 
 #sets, #dashboard {
@@ -17,7 +17,7 @@
     border: 1px solid #000;
 }
 
-#sets .set-name {
+.set-name {
     text-align: center;
 }
 
