@@ -3,6 +3,14 @@
     margin-bottom: 100px;
 }
 
+.default {
+    cursor: default;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
 #AppForm {
     margin: 100px 0;
 }

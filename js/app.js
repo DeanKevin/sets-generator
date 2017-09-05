@@ -8,10 +8,19 @@ $(document).ready(function()
     reset = document.querySelector('#reset');
     display.addEventListener('click', onDisplay);
     reset.addEventListener('click', onReset);
+
     $('#sets-display').on("click", ".set-item", function(e) {
         e.preventDefault();
         onSets(e);
     });
+
+    $('#sets-display .set-item').hover(
+        function() {
+            $(this).addClass('pointer');
+        }, function() {
+            $(this).removeClass('pointer');
+        }
+    );
 
     function onSets(event) {
         
