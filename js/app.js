@@ -23,13 +23,16 @@ $(document).ready(function()
     );
 
     function onSets(event) {
-        
+        event.preventDefault();
+
         var set_id = $(event.target).parents('.set-item').attr('id');
         var set = $('#' + set_id + ' .set-values ul li');
         var set_count = set.length;
         var set_array = [];
 
         if(set_count > 0) {
+
+            $('#' + set_id).css('border', '1px solid #00ff00');
             
             $.each(set, function(index, value) {
 
@@ -46,14 +49,16 @@ $(document).ready(function()
                 success: function(data) {
 
                     //success
-                    var message = jQuery.parseJSON(data);
+                    var response = jQuery.parseJSON(data);
+
+                    $('#selected span').text(response.count);
                 
                 }
             });
 
         }
-        return false;
 
+        return false;
     }
     
     function onDisplay(e) {
@@ -68,6 +73,7 @@ $(document).ready(function()
             $('.set-values').css('display', 'block');
         }
 
+        return false;
     }
     
     function onReset(e) {
@@ -137,6 +143,8 @@ $(document).ready(function()
         $('#set1 .set-values').empty().append(set1);
         $('#set2 .set-values').empty().append(set2);
         $('#set3 .set-values').empty().append(set3);
+
+        $('#sets .set-item').css('border', '1px solid #000000');
 
         // display matched
         $.each(sets, function(index, set) {

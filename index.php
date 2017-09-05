@@ -84,16 +84,10 @@ if(!empty($_POST)) {
         </form>
         <div id="dashboard">
             <div class="col">
-                <p class="label">Generated:</p>
-                <div id="generated">
-
-                </div>
+                <p id="generated" class="label">Generated: <span></span></p>
             </div>
             <div class="col">
-                <p class="label">Selected:</p>
-                <div id="selected">
-
-                </div>
+                <p id="selected" class="label">Selected: <span></span></p>
             </div>
             <div class="clear-fix"></div>
         </div>

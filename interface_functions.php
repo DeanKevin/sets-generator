@@ -108,22 +108,14 @@ function select($cmd, $param) {
 
     global $db_conn;
 
-    if($db_conn['status']) {
-
-        $sql = "INSERT INTO stored_sets (n1, n2, n3, n4, n5, n6)
-        VALUES ($param[0], $param[1], $param[2], $param[3], $param[4], $param[5])";
-        // use exec() because no results are returned
-        $db_conn['conn']->exec($sql);
+    $sql = "INSERT INTO stored_sets (n1, n2, n3, n4, n5, n6)
+    VALUES ($param[0], $param[1], $param[2], $param[3], $param[4], $param[5])";
         
-        $message = "Saved selected set.";
+    $db_conn['conn']->exec($sql);
 
-    } else {
-
-        $message = "Database connection error.";
-
-    }
-
-    return array('message' => $message);
+    $last_id = $db_conn['conn']->lastInsertId();
+    
+   return array('status' => true, 'count' => $last_id);
 
 }
 
