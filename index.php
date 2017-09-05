@@ -1,7 +1,6 @@
 <?php
 include_once("interface_functions.php");
 // Database check
-// ToDo: Have databse connection setup once and handle database issues as needed.
 $db = new DB();
 $db_conn = $db->connect();
 if(!$db_conn['status']) {
@@ -47,6 +46,7 @@ if(!empty($_POST)) {
     <div id=interface>
         <div id="sets-display">
             <p id="sets-label">Generated Sets</p>
+            <p id="sets-info">Click on a set to select once generated.</p>
             <div id="sets">
                 <div id="set1" class="set-item">
                     <p class="set-name">Set 1</p>

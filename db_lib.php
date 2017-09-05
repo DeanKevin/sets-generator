@@ -10,7 +10,6 @@
     var $password = "secret";
     
     // Methods
-    // ToDo: Make this function a constructor method.
     function connect() {
         try
         {
