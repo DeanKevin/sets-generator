@@ -1,5 +1,44 @@
 /* Application functionality */
+#sets-display {
+    margin-bottom: 100px;
+}
 
-#sets {
+#AppForm {
+    margin: 100px 0 20%;
+}
+
+#sets, #dashboard {
+    position: relative;
+}
+
+.set-item {
+    width: 100px;
+    float: left;
+    border: 1px solid #000;
+}
+
+#sets .set-name {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+#matched {
     display: none;
+}
+
+#dashboard .label {
+    padding-left: 5px;
+}
+
+#dashboard .col {
+    width: 49%;
+    float: left;
+    border: 1px solid #000;
+}
+
+.clear-fix {
+    clear: both;
 }

@@ -1,16 +1,36 @@
 <?php
-    include("interface_functions.php");
-    if(!empty($_POST)) {
-        // Check for command.
-        if(array_key_exists('set', $_POST)) {
+include_once("interface_functions.php");
+// Database check
+// ToDo: Have databse connection setup once and handle database issues as needed.
+$db = new DB();
+$db_conn = $db->connect();
+if(!$db_conn['status']) {
+    echo "Database error.";
+    exit;
+}
 
-            // Process command.
-            $param = (int)$_POST['set'];
-            $result = process_command($param);
-            $sets = json_encode($result);
-            echo $sets;
-        }
-    } else { ?>
+if(!empty($_POST)) {
+    // Check for command.
+    if(array_key_exists('generate', $_POST)) {
+        $cmd = 'generate';
+        $param = (bool)$_POST['generate'];
+        $result = process_command($cmd, $param);
+        echo json_encode($result);
+    }
+    if(array_key_exists('select', $_POST)) {
+        $cmd = 'select';
+        $param = (string)$_POST['select'];
+        $param = json_decode($param);
+        $result = process_command($cmd, $param);
+        echo json_encode($result);
+    }
+    if(array_key_exists('reset', $_POST)) {
+        $cmd = 'reset';
+        $param = (bool)$_POST['reset'];
+        $result = process_command($cmd, $param);
+        echo json_encode($result);
+    }
+} else { ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,28 +46,32 @@
 <body id="app-layout">
     <div id=interface>
         <div id="sets-display">
+            <p id="sets-label">Generated Sets</p>
             <div id="sets">
-                <div id="set1"></div>
-                <div id="set2"></div>
-                <div id="set3"></div>
+                <div id="set1" class="set-item">
+                    <p class="set-name">Set 1</p>
+                    <div class="set-values"></div>
+                </div>
+                <div id="set2" class="set-item">
+                    <p class="set-name">Set 2</p>
+                    <div class="set-values"></div>
+                </div>
+                <div id="set3" class="set-item">
+                     <p class="set-name">Set 3</p>
+                    <div class="set-values"></div>
+                </div>
+                <div class="clear-fix"></div>
             </div>
+        </div>
+        <div id="matched">
+            <p id="matched-label">Matched</p>
+            <div id="matched-sets"></div>
         </div>
         <form name="App" id="AppForm" method="POST" action="index.php">
             <div class="form-group">
-                <label for="set" class="col-sm-3 control-label">Sets</label>
-                <div class="col-sm-6">
-                    <select name="set" id="set">
-                        <option value="0">Generate new sets</option>
-                        <option value="1">Select set 1</option>
-                        <option value="2">Select set 2</option>
-                        <option value="3">Select set 3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-default">
-                        <i class="fa fa-btn fa-plus"></i>Select set or generate new sets
+                        <i class="fa fa-btn fa-plus"></i>Generate new sets
                     </button>
                 </div>
             </div>
@@ -58,6 +82,21 @@
                 <button type="reset" id="reset" class="btn btn-secondary">Reset</button>
             </div>
         </form>
+        <div id="dashboard">
+            <div class="col">
+                <p class="label">Generated:</p>
+                <div id="generated">
+
+                </div>
+            </div>
+            <div class="col">
+                <p class="label">Selected:</p>
+                <div id="selected">
+
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
     </div>
 </body>
 <!-- JavaScripts -->
@@ -65,4 +104,4 @@
 <script src="js/app.js"></script>
 </html>
 
-  <?php  } ?>
+<?php } ?>
