@@ -38,16 +38,11 @@ $(document).ready(function()
 
                     //success
                     var message = jQuery.parseJSON(data);
-                    
-                    alert(message['message']);
-                    //updateSets(sets);
                 
                 }
             });
 
         }
-        
-        console.log("Detected click event within the sets display.");
         return false;
 
     }
@@ -68,8 +63,6 @@ $(document).ready(function()
     
     function onReset(e) {
         e.preventDefault();
-
-        // ToDo: Add confirmation dialog.
         
         dataString = "reset=true";
 
@@ -81,7 +74,6 @@ $(document).ready(function()
 
                 //success
                 var response = jQuery.parseJSON(data);
-
                 if(response['message'] === 'success') {
                     resetApp();
                 };
@@ -162,13 +154,11 @@ $(document).ready(function()
     }
 
     function resetApp() {
-        
-        // ToDo: Rest application dashboard
+
+         // Rest application dashboard
         $('#set1 .set-values').empty();
         $('#set2 .set-values').empty();
         $('#set3 .set-values').empty();
-
-        console.log("The dashboard has been reset.");
 
     }
 

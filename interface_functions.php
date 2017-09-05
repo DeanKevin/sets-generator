@@ -131,12 +131,16 @@ function select($cmd, $param) {
  * Restart application.
 */
 function restart($cmd, $param) {
-
-    // ToDo: Clear database table
-
     
-    $message = "success";
+    global $db_conn;
 
+    $sql = "DELETE FROM stored_sets";
+    $db_conn['conn']->exec($sql);
+
+    $sql = "ALTER TABLE stored_sets AUTO_INCREMENT = 1";
+    $db_conn['conn']->exec($sql);
+
+    $message = "success";
     return array('message' => $message);
 
 }
